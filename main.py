@@ -8,7 +8,7 @@ from tuyalinksdk.console_qrcode import qrcode_generate
 from secret import productid, uuid, authkey
 import DataFromESP32
 
-coloredlogs.install(level='DEBUG')
+#coloredlogs.install(level='DEBUG')
 
 client = TuyaClient(productid=productid,
                     uuid=uuid,
@@ -23,7 +23,8 @@ def on_qrcode(url):
 def on_reset(data):
     print('Reset:', data)
 
-def on_dps(dps):  # when there is a change in the Data Ponts this is called
+# when there is a change in the Data Ponts this is called
+def on_dps(dps):
     print('DataPoints:', dps)
     client.push_dps(dps)
 
@@ -40,10 +41,10 @@ dps = {'101': True}
 while True:
     reload(DataFromESP32)
 
-    dps['101'] = DataFromESP32.test
+    dps['101'] = DataFromESP32.temperature
     client.push_dps(dps)
 
-    print(dps)
+    #print(dps)  # old debug output
 
     time.sleep(1)
 
