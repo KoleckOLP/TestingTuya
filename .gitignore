@@ -1,6 +1,8 @@
 # project specific
 secret.py
 storage.json
+nohup.out
+commands.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
