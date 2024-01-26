@@ -34,15 +34,19 @@ client.on_dps = on_dps
 client.connect()
 client.loop_start()
 
-dps = {'101': True}  # Indoor Temperature
-dps = {'102': True}  # Indoor Humidity
-dps = {'103': True}  # Indoor Pressure
-dps = {'104': True}  # Indoor Altitude
+dps = {
+    '101': True,  # Indoor Temperature
+    '102': True,  # Indoor Humidity
+    '103': True,  # Indoor Pressure
+    '104': True   # Indoor Altitude
+}
 
+'''
 dps = {'105': True}  # Outdoor Temperature
 dps = {'106': True}  # Outdoor Humidity
 dps = {'107': True}  # Outdoor Pressure
 dps = {'108': True}  # Outdoor Altitude
+'''
 
 while True:
     reload(DataFromESP32)
@@ -52,10 +56,14 @@ while True:
     dps['103'] = DataFromESP32.in_press
     dps['104'] = DataFromESP32.in_alt
 
+    '''
     dps['105'] = DataFromESP32.out_temp
     dps['106'] = DataFromESP32.out_hum
     dps['107'] = DataFromESP32.out_press
     dps['108'] = DataFromESP32.out_alt
+    '''
+
+    #print(dps)
 
     client.push_dps(dps)
 
